@@ -73,7 +73,8 @@ def evaluation(model, dataloader, device):
 
 
 def main(args):
-    args.device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
+    #args.device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
+    args.device = torch.device("cpu")
 
     train_path_sp = args.data_path + "cnsd-sts-train.txt"
     train_path_unsp = args.data_path + "cnsd-sts-train_unsup.txt"
@@ -112,11 +113,12 @@ if __name__ == "__main__":
     parser.add_argument("--un_supervise", type=bool, default=True)
     parser.add_argument("--lr", type=float, default=3e-5)
     parser.add_argument("--dropout", type=float, default=0.15)
-    parser.add_argument("--batch_size", type=float, default=32)
+    parser.add_argument("--batch_size", type=float, default=1)
     parser.add_argument("--max_length", type=int, default=64, help="max length of input sentences")
     parser.add_argument("--data_path", type=str, default="../data/STS-B/")
     parser.add_argument("--pretrain_model_path", type=str,
-                        default="/data/Learn_Project/Backup_Data/bert_chinese")
+                        default="distilbert-base-uncased")
+                        #default="/data/Learn_Project/Backup_Data/bert_chinese")
     parser.add_argument("--pooler", type=str, choices=['cls', "pooler", "last-avg", "first-last-avg"],
                         default='first-last-avg', help='which pooler to use')
 
