@@ -83,7 +83,7 @@ def main(args):
     # pretrain_model_path = "/data/Learn_Project/Backup_Data/macbert_chinese_pretrained"
 
     test_data_source = load_sts_data(test_path_sp)
-    tokenizer = BertTokenizer.from_pretrained(args.pretrain_model_path)
+    tokenizer = BertTokenizer.from_pretrained(pretrained_model_name_or_path=args.pretrain_model_path)
     if args.un_supervise:
         train_data_source = load_sts_data_unsup(train_path_unsp)
         train_sents = [data[0] for data in train_data_source]
@@ -113,11 +113,12 @@ if __name__ == "__main__":
     parser.add_argument("--un_supervise", type=bool, default=True)
     parser.add_argument("--lr", type=float, default=3e-5)
     parser.add_argument("--dropout", type=float, default=0.15)
-    parser.add_argument("--batch_size", type=float, default=1)
+    parser.add_argument("--batch_size", type=float, default=5)
     parser.add_argument("--max_length", type=int, default=64, help="max length of input sentences")
     parser.add_argument("--data_path", type=str, default="../data/STS-B/")
     parser.add_argument("--pretrain_model_path", type=str,
-                        default="distilbert-base-uncased")
+                        default="bert-base-chinese")
+                        #default="distilbert-base-uncased")
                         #default="/data/Learn_Project/Backup_Data/bert_chinese")
     parser.add_argument("--pooler", type=str, choices=['cls', "pooler", "last-avg", "first-last-avg"],
                         default='first-last-avg', help='which pooler to use')
