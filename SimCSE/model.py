@@ -6,11 +6,12 @@ import torch.nn.functional as F
 
 from transformers import BertModel, BertConfig, BertTokenizer
 
-
+# bert toturial:
+# https://github.com/google-research/bert
 class SimcseModel(nn.Module):
     """Simcse无监督模型定义"""
 
-    def __init__(self, pretrained_model, pooling, dropout=0.3):
+    def __init__(self, pretrained_model:str, pooling:str, dropout=0.3):
         super(SimcseModel, self).__init__()
         config = BertConfig.from_pretrained(pretrained_model)
         config.attention_probs_dropout_prob = dropout  # 修改config的dropout系数
@@ -22,20 +23,24 @@ class SimcseModel(nn.Module):
         out = self.bert(input_ids, attention_mask, token_type_ids, output_hidden_states=True)
 
         if self.pooling == 'cls':
-            return out.last_hidden_state[:, 0]  # [batch, 768]
-        if self.pooling == 'pooler':
-            return out.pooler_output  # [batch, 768]
+            return out.last_hidden_state[:, 0]  # [batch, model_size=768]
+        if self.pooling == 'pooler': # cls token -> mlp -> activate
+            return out.pooler_output  # [batch, model_size=768]
         if self.pooling == 'last-avg':
-            last = out.last_hidden_state.transpose(1, 2)  # [batch, 768, seqlen]
-            return torch.avg_pool1d(last, kernel_size=last.shape[-1]).squeeze(-1)  # [batch, 768]
+            last = out.last_hidden_state.transpose(1, 2)  # [batch, seqlen, model_size] -> [batch, model_size=768, seqlen]
+            # 在最后一维(seq维度)上avg_pool
+            return torch.avg_pool1d(last, kernel_size=last.shape[-1]).squeeze(-1)  # [batch, model_size=768]
         if self.pooling == 'first-last-avg':
-            first = out.hidden_states[1].transpose(1, 2)  # [batch, 768, seqlen]
-            last = out.hidden_states[-1].transpose(1, 2)  # [batch, 768, seqlen]
-            first_avg = torch.avg_pool1d(first, kernel_size=last.shape[-1]).squeeze(-1)  # [batch, 768]
-            last_avg = torch.avg_pool1d(last, kernel_size=last.shape[-1]).squeeze(-1)  # [batch, 768]
-            avg = torch.cat((first_avg.unsqueeze(1), last_avg.unsqueeze(1)), dim=1)  # [batch, 2, 768]
-            return torch.avg_pool1d(avg.transpose(1, 2), kernel_size=2).squeeze(-1)  # [batch, 768]
-
+            # 本文的架构是 BartForConditionalGeneration, is_encoder_decoder=true, 有decoder层
+            # hidden_states:Tuple[jnp.ndarray[(batch_size, num_heads, encoder_sequence_length, embed_size_per_head]],
+            # config.json里：encoder有6层，decoder有6层,每层都有hidden_state
+            # hidden_states:总共有13层，其中第0层为embedding层
+            first = out.hidden_states[1].transpose(1, 2)  # [batch, model_size=768, seqlen]
+            last = out.hidden_states[-1].transpose(1, 2)  # [batch, model_size=768, seqlen]
+            first_avg = torch.avg_pool1d(first, kernel_size=last.shape[-1]).squeeze(-1)  # [batch, model_size=768],在最后一维seq_len维进行卷积
+            last_avg = torch.avg_pool1d(last, kernel_size=last.shape[-1]).squeeze(-1)  # [batch, model_size=768]
+            avg = torch.cat((first_avg.unsqueeze(1), last_avg.unsqueeze(1)), dim=1)  # [batch, 2, model_size=768]
+            return torch.avg_pool1d(avg.transpose(1, 2), kernel_size=2).squeeze(-1)  # [batch, model_size, 2] -> [batch, model_size=768]
 
 def simcse_unsup_loss(y_pred, device, temp=0.05):
     """无监督的损失函数

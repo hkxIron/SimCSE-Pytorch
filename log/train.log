@@ -1635,3 +1635,82 @@
 2023-08-03 22:41:33.796 | INFO     | __main__:<module>:126 - Namespace(batch_size=32, data_path='../data/STS-B/', device='cpu', dropout=0.15, lr=3e-05, max_length=64, pooler='first-last-avg', pretrain_model_path='distilbert-base-uncased', save_path='./model_save', un_supervise=True)
 2023-08-03 22:43:21.841 | INFO     | __main__:<module>:126 - Namespace(batch_size=1, data_path='../data/STS-B/', device='cpu', dropout=0.15, lr=3e-05, max_length=64, pooler='first-last-avg', pretrain_model_path='distilbert-base-uncased', save_path='./model_save', un_supervise=True)
 2023-08-03 22:55:32.913 | INFO     | __main__:<module>:127 - Namespace(batch_size=1, data_path='../data/STS-B/', device='cpu', dropout=0.15, lr=3e-05, max_length=64, pooler='first-last-avg', pretrain_model_path='distilbert-base-uncased', save_path='./model_save', un_supervise=True)
+2023-08-04 09:35:20.775 | INFO     | __main__:<module>:127 - Namespace(batch_size=1, data_path='../data/STS-B/', device='cpu', dropout=0.15, lr=3e-05, max_length=64, pooler='first-last-avg', pretrain_model_path='distilbert-base-uncased', save_path='./model_save', un_supervise=True)
+2023-08-04 09:35:28.704 | INFO     | __main__:train:39 - loss: 0.0000
+2023-08-04 09:38:25.644 | INFO     | __main__:train:45 - higher corrcoef: 0.2694 in batch: 5, save model
+2023-08-04 09:38:30.692 | INFO     | __main__:train:39 - loss: 0.0000
+2023-08-04 09:39:05.792 | INFO     | __main__:<module>:127 - Namespace(batch_size=5, data_path='../data/STS-B/', device='cpu', dropout=0.15, lr=3e-05, max_length=64, pooler='first-last-avg', pretrain_model_path='distilbert-base-uncased', save_path='./model_save', un_supervise=True)
+2023-08-04 09:39:17.742 | INFO     | __main__:train:39 - loss: 0.9173
+2023-08-04 09:41:15.719 | INFO     | __main__:train:45 - higher corrcoef: 0.1939 in batch: 5, save model
+2023-08-04 09:41:25.458 | INFO     | __main__:train:39 - loss: 0.2510
+2023-08-04 09:43:31.818 | INFO     | __main__:train:39 - loss: 0.2341
+2023-08-04 09:45:37.233 | INFO     | __main__:train:39 - loss: 0.4835
+2023-08-04 09:47:42.292 | INFO     | __main__:train:39 - loss: 0.0651
+2023-08-04 09:49:51.515 | INFO     | __main__:train:39 - loss: 0.3131
+2023-08-04 09:51:57.264 | INFO     | __main__:train:45 - higher corrcoef: 0.2023 in batch: 30, save model
+2023-08-04 09:52:07.678 | INFO     | __main__:train:39 - loss: 0.0832
+2023-08-04 09:54:23.394 | INFO     | __main__:train:39 - loss: 0.0631
+2023-08-04 09:57:03.467 | INFO     | __main__:train:39 - loss: 0.1145
+2023-08-04 09:59:38.328 | INFO     | __main__:train:39 - loss: 0.4241
+2023-08-04 10:02:05.254 | INFO     | __main__:train:39 - loss: 0.5377
+2023-08-04 10:04:12.955 | INFO     | __main__:train:45 - higher corrcoef: 0.2091 in batch: 55, save model
+2023-08-04 10:04:24.054 | INFO     | __main__:train:39 - loss: 0.3026
+2023-08-04 10:06:36.503 | INFO     | __main__:train:45 - higher corrcoef: 0.2403 in batch: 60, save model
+2023-08-04 10:06:47.609 | INFO     | __main__:train:39 - loss: 0.0443
+2023-08-04 10:09:05.728 | INFO     | __main__:train:39 - loss: 0.4870
+2023-08-04 10:11:23.523 | INFO     | __main__:train:39 - loss: 0.3105
+2023-08-04 10:13:57.320 | INFO     | __main__:train:39 - loss: 0.1324
+2023-08-04 10:16:44.513 | INFO     | __main__:train:39 - loss: 0.4339
+2023-08-04 10:19:17.387 | INFO     | __main__:train:39 - loss: 0.0049
+2023-08-04 10:21:34.421 | INFO     | __main__:train:39 - loss: 0.0701
+2023-08-04 10:23:43.170 | INFO     | __main__:train:39 - loss: 0.0010
+2023-08-04 10:26:05.532 | INFO     | __main__:train:39 - loss: 0.1869
+2023-08-04 10:28:33.276 | INFO     | __main__:train:39 - loss: 0.0001
+2023-08-04 10:30:52.628 | INFO     | __main__:train:39 - loss: 0.0120
+2023-08-04 10:33:21.002 | INFO     | __main__:train:39 - loss: 0.0221
+2023-08-04 10:35:35.664 | INFO     | __main__:train:39 - loss: 0.1191
+2023-08-04 10:37:54.464 | INFO     | __main__:train:39 - loss: 0.5125
+2023-08-04 10:40:16.297 | INFO     | __main__:train:39 - loss: 0.4404
+2023-08-04 10:42:32.863 | INFO     | __main__:train:39 - loss: 0.3094
+2023-08-04 10:44:44.153 | INFO     | __main__:train:39 - loss: 0.0028
+2023-08-04 10:47:04.382 | INFO     | __main__:train:39 - loss: 0.0765
+2023-08-04 10:49:13.500 | INFO     | __main__:train:39 - loss: 0.1319
+2023-08-04 10:51:22.395 | INFO     | __main__:train:39 - loss: 0.5949
+2023-08-04 10:53:20.946 | INFO     | __main__:train:45 - higher corrcoef: 0.2506 in batch: 160, save model
+2023-08-04 10:53:30.817 | INFO     | __main__:train:39 - loss: 0.0225
+2023-08-04 10:55:38.557 | INFO     | __main__:train:39 - loss: 0.1919
+2023-08-04 10:57:54.086 | INFO     | __main__:train:39 - loss: 0.0544
+2023-08-04 11:00:06.375 | INFO     | __main__:train:39 - loss: 0.0839
+2023-08-04 11:02:20.856 | INFO     | __main__:train:39 - loss: 0.0224
+2023-08-04 11:04:35.968 | INFO     | __main__:train:39 - loss: 0.2558
+2023-08-04 11:07:13.301 | INFO     | __main__:train:39 - loss: 0.0431
+2023-08-04 11:09:40.940 | INFO     | __main__:train:39 - loss: 0.0619
+2023-08-04 11:12:17.625 | INFO     | __main__:train:39 - loss: 0.0200
+2023-08-04 11:14:42.203 | INFO     | __main__:train:39 - loss: 0.2027
+2023-08-04 11:17:07.989 | INFO     | __main__:train:39 - loss: 0.0278
+2023-08-04 11:19:26.752 | INFO     | __main__:train:39 - loss: 0.0003
+2023-08-04 11:21:49.325 | INFO     | __main__:train:39 - loss: 0.2879
+2023-08-04 11:24:12.105 | INFO     | __main__:train:39 - loss: 0.1018
+2023-08-04 11:26:46.167 | INFO     | __main__:train:39 - loss: 0.0045
+2023-08-04 11:29:08.386 | INFO     | __main__:train:39 - loss: 0.0005
+2023-08-04 11:31:23.501 | INFO     | __main__:train:39 - loss: 0.0039
+2023-08-04 11:33:30.558 | INFO     | __main__:train:45 - higher corrcoef: 0.2542 in batch: 245, save model
+2023-08-04 11:33:41.548 | INFO     | __main__:train:39 - loss: 0.0026
+2023-08-04 11:35:50.027 | INFO     | __main__:train:45 - higher corrcoef: 0.2558 in batch: 250, save model
+2023-08-04 11:36:00.241 | INFO     | __main__:train:39 - loss: 0.0030
+2023-08-04 11:38:20.778 | INFO     | __main__:train:39 - loss: 0.0224
+2023-08-04 11:40:41.647 | INFO     | __main__:train:39 - loss: 0.0051
+2023-08-04 11:43:05.366 | INFO     | __main__:train:39 - loss: 0.0026
+2023-08-04 11:45:16.460 | INFO     | __main__:train:45 - higher corrcoef: 0.2863 in batch: 270, save model
+2023-08-04 11:45:26.664 | INFO     | __main__:train:39 - loss: 0.0097
+2023-08-04 11:47:38.477 | INFO     | __main__:train:39 - loss: 0.0007
+2023-08-04 11:49:56.914 | INFO     | __main__:train:39 - loss: 0.0010
+2023-08-04 11:52:13.623 | INFO     | __main__:train:39 - loss: 0.0061
+2023-08-04 11:54:25.732 | INFO     | __main__:train:39 - loss: 0.3527
+2023-08-04 11:54:49.421 | INFO     | __main__:<module>:127 - Namespace(batch_size=5, data_path='../data/STS-B/', device='cpu', dropout=0.15, lr=3e-05, max_length=64, pooler='first-last-avg', pretrain_model_path='distilbert-base-uncased', save_path='./model_save', un_supervise=True)
+2023-08-04 14:28:25.847 | INFO     | __main__:<module>:128 - Namespace(batch_size=5, data_path='../data/STS-B/', device='cpu', dropout=0.15, lr=3e-05, max_length=64, pooler='first-last-avg', pretrain_model_path='bert-base-chinese', save_path='./model_save', un_supervise=True)
+2023-08-04 15:23:44.870 | INFO     | __main__:<module>:128 - Namespace(device='cpu', save_path='./model_save', un_supervise=True, lr=3e-05, dropout=0.15, batch_size=5, max_length=64, data_path='../data/STS-B/', pretrain_model_path='bert-base-chinese', pooler='first-last-avg')
+2023-08-04 15:27:11.930 | INFO     | __main__:train:39 - loss: 0.0900
+2023-08-04 15:44:15.463 | INFO     | __main__:train:45 - higher corrcoef: 0.6255 in batch: 5, save model
+2023-08-04 15:44:57.139 | INFO     | __main__:train:39 - loss: 0.0360
+2023-08-04 15:55:40.628 | INFO     | __main__:<module>:128 - Namespace(device='cpu', save_path='./model_save', un_supervise=True, lr=3e-05, dropout=0.15, batch_size=5, max_length=64, data_path='../data/STS-B/', pretrain_model_path='bert-base-chinese', pooler='first-last-avg')
