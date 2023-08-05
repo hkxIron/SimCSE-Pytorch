@@ -24,7 +24,6 @@ from transformers import (
     AutoModel,
 )
 
-
 def train(model:SimcseModel, train_dl:DataLoader, dev_dl:DataLoader, optimizer:torch.optim.Optimizer, device:Union[str, torch.device], save_path:str):
     """模型训练函数"""
     model.train()
@@ -102,11 +101,16 @@ def train_model(args):
     test_data_source = load_sts_data(test_path_sp)
     #tokenizer = BertTokenizer.from_pretrained(pretrained_model_name_or_path=args.pretrain_model_path)
     tokenizer = BertTokenizerFast.from_pretrained('bert-base-chinese')
+    # 选择有监督还是无监督训练方式
     if args.un_supervise:
+        # 无监督
+        # 利用同一个句子的两次dropout作为正样本，同一batch内的其它作为负样本
         train_data_source = load_sts_data_unsup(train_path_unsp)
         train_sents = [data[0] for data in train_data_source]
         train_dataset = TrainDataset(train_sents, tokenizer, max_len=args.max_length)
     else:
+        # 有监督
+        # 蕴含句子对为正样本，矛盾句子对为负样本
         train_data_source = load_sts_data(train_path_sp)
         # train_sents = [data[0] for data in train_data_source] + [data[1] for data in train_data_source]
         train_dataset = TestDataset(train_data_source, tokenizer, max_len=args.max_length)

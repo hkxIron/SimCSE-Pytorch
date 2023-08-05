@@ -3,7 +3,25 @@ import sys
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
+"""
+SimCSE（EMNLP 2021）
+题目：SimCSE: Simple Contrastive Learning of Sentence Embeddings
 
+地址：https://aclanthology.org/2021.emnlp-main.552.pdf
+
+代码：https://github.com/princeton-nlp/SimCSE
+出发点：
+
+将对比学习方式引入句向量表征领域。
+
+解决方式：
+
+引入对比损失的难点在于正样本的构建，该文提出dropout的正样本构建方式。
+
+无监督SimCSE：
+
+Dropout构建正例样本，batch内其他样本作为负样本
+"""
 from transformers import BertModel, BertConfig, BertTokenizer
 
 # bert toturial:

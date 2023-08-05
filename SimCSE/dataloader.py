@@ -6,7 +6,11 @@ from transformers import (
   AutoModel,
 )
 
-# query1, query2, similar_score
+"""
+有监督
+蕴含句子对为正样本，矛盾句子对为负样本
+query1, query2, similar_score
+"""
 def load_sts_data(path)->List[Tuple[str, str, str]]:
     with open(path, 'r', encoding='utf-8') as f:
         data_source = list()
@@ -18,17 +22,18 @@ def load_sts_data(path)->List[Tuple[str, str, str]]:
             data_source.append((line_split[1], line_split[2], line_split[3]))
         return data_source
 
-
+"""
+无监督的方式
+利用同一个句子的两次dropout作为正样本，同一batch内的其它作为负样本
+"""
 def load_sts_data_unsup(path:str)->List[List[str]]:
     with open(path, 'r', encoding='utf-8') as f:
         data_source = list()
         for line in f:
-            # 人们下了火车。
+            # query:人们下了火车。
             line_split = line.strip().split("\n")
-            # query1
             data_source.append(line_split)
         return data_source
-
 
 class TrainDataset(Dataset):
     def __init__(self, data:List, tokenizer, max_len=256):
