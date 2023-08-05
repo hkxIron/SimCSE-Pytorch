@@ -1,6 +1,10 @@
 from torch.utils.data import Dataset, DataLoader
 from transformers import BertModel, BertConfig, BertTokenizer, BatchEncoding
 from typing import *
+from transformers import (
+  BertTokenizerFast,
+  AutoModel,
+)
 
 # query1, query2, similar_score
 def load_sts_data(path)->List[Tuple[str, str, str]]:
@@ -65,7 +69,7 @@ class TestDataset(Dataset):
     def __getitem__(self, index)->Tuple[BatchEncoding, BatchEncoding, int]:
         da = self.data[index]
         # data: ['一个男人在弹吉他。', '一个人在吹小号。', '1']
-        # 格式为：文本1, 文本2, 相似度
+        # 格式为：文本1, 文本2, 相似度分数
         return self.text2id([da[0]]), self.text2id([da[1]]), int(da[2])
 
 
@@ -75,19 +79,20 @@ if __name__ == "__main__":
     train_path_sp = "../data/STS-B/" + "cnsd-sts-train.txt"
     dev_path_sp = "../data/STS-B/" + "cnsd-sts-dev.txt"
     #pretrain_model_path = "/Learn_Project/Backup_Data/macbert_chinese_pretrained"
-    pretrain_model_path = "bert-base-chinese"
-    #pretrain_model_path = "distilbert-base-uncased"
+    #pretrain_model_path = "bert-base-chinese"
+    #pretrain_model_path = "bert-tiny-chinese"
 
     # query1, query2, similar_score
     train_data_source = load_sts_data(train_path_sp)
     # query1, query2, similar_score
     test_data_source = load_sts_data(dev_path_sp)
-    tokenizer = BertTokenizer.from_pretrained(pretrain_model_path)
+    #tokenizer = BertTokenizer.from_pretrained(pretrain_model_path)
+    tokenizer = BertTokenizerFast.from_pretrained('bert-base-chinese')
 
     # 两个query list进行合并
     train_sents = [data[0] for data in train_data_source] + [data[1] for data in train_data_source]
-    train_dataset = TrainDataset(train_sents, tokenizer, max_len=256)
-    train_dataloader = DataLoader(train_dataset, batch_size=8, shuffle=True, num_workers=12)
+    train_dataset = TrainDataset(train_sents, tokenizer, max_len=64)
+    train_dataloader = DataLoader(train_dataset, batch_size=8, shuffle=True, num_workers=1)
 
     for batch_idx, source in enumerate(train_dataloader, start=1):
         # 维度转换 [batch, 2, seq_len] -> [batch * 2, sql_len]
@@ -112,3 +117,4 @@ if __name__ == "__main__":
         target_token_type_ids = target.get('token_type_ids').squeeze(1)
         # concat
         #label_array = np.append(label_array, np.array(label))
+
